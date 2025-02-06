@@ -59,27 +59,45 @@ CREATE TABLE payments (
 
 CREATE TABLE reviews (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    room_id INT,
-    rating INT CHECK (rating BETWEEN 1 AND 5),  -- Ratings between 1 and 5
+    user_id INT NOT NULL,
+    room_id INT NOT NULL,
+    rating TINYINT NOT NULL,  -- Used TINYINT (1 to 5)
     comment TEXT,
     review_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    INDEX (user_id),  -- Ensures proper indexing for foreign keys
+    INDEX (room_id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE
-);
+)
 
+-- Insert users
 INSERT INTO users (name, email, password, role) 
 VALUES 
 ('Admin User', 'admin@example.com', 'hashed_password_here', 'admin'),
 ('John Doe', 'john@example.com', 'hashed_password_here', 'guest');
 
-
-INSERT INTO rooms (room_number, room_type, description, price, status) 
+-- Insert room types
+INSERT INTO room_types (type_name, description) 
 VALUES 
-('101', 'single', 'A cozy single room with a city view.', 50.00, 'available'),
-('102', 'double', 'Spacious double room with modern amenities.', 80.00, 'available'),
-('201', 'suite', 'Luxury suite with ocean view and premium services.', 150.00, 'available');
+('single', 'A small room for one person'),
+('double', 'A room for two people'),
+('suite', 'A luxurious suite with extra amenities');
 
+-- Insert room statuses
+INSERT INTO room_status (status_name) 
+VALUES 
+('available'),
+('booked'),
+('maintenance');
+
+-- Insert rooms (Make sure room_type_id and status_id exist)
+INSERT INTO rooms (room_number, room_type_id, description, price, status_id) 
+VALUES 
+('101', 1, 'A cozy single room with a city view.', 50.00, 1),
+('102', 2, 'Spacious double room with modern amenities.', 80.00, 1),
+('201', 3, 'Luxury suite with ocean view and premium services.', 150.00, 1);
+
+-- Insert bookings (Ensure user_id and room_id exist)
 INSERT INTO bookings (user_id, room_id, check_in, check_out, total_price, status) 
 VALUES 
 (2, 1, '2024-06-10', '2024-06-15', 250.00, 'confirmed'),
