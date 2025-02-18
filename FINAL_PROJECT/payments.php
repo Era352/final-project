@@ -1,6 +1,6 @@
 <?php
 // payment.php - Payment Page
-require 'db_connect.php'; // Include your database connection
+require 'db_hotel_management.php'; // Include your database connection
 
 if (isset($_POST['pay'])) {
     $user_id = 1; // Replace with session user ID

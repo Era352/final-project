@@ -1,7 +1,7 @@
 <?php
 // admin.php - Simple Admin Panel
 session_start();
-require 'db_connect.php'; // Database connection
+require 'db_hotel_management.php'; // Database connection
 
 // Check if the user is an admin (Modify according to your session system)
 $user_role = 'admin'; // Replace with session role check

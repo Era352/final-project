@@ -1,6 +1,6 @@
 <?php
 // rooms.php - Rooms Page
-require 'db_connect.php'; // Include your database connection
+require 'db_hotel_management.php'; // Include your database connection
 $result = $conn->query("SELECT * FROM rooms");
 ?>
 <!DOCTYPE html>

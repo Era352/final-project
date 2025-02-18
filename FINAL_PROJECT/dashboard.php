@@ -1,3 +1,7 @@
+<?php 
+require 'db_hotel_management.php'; 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

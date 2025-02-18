@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db_connect.php';
+require 'db_hotel_management.php';
 
 if (isset($_POST['login'])) {
     $email = $_POST['email'];

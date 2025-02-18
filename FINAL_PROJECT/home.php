@@ -1,5 +1,6 @@
 <?php
 // home.php - Home Page
+'db_hotel_management.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
